@@ -10,7 +10,7 @@ router.get('/', departmentController.getAllDepartments);
 router.get(
   '/:slug',
   validateRequest(departmentValidation.validateParamsSchema),
-  departmentController.getDepartmentBySlug
+  departmentController.getFacultiesByDepartmentSlug
 );
 
 export const departmentRoutes = router;

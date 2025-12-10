@@ -15,38 +15,40 @@ const getAllDepartments = catchAsync(async (_req: Request, res: Response) => {
   });
 });
 
-const getDepartmentBySlug = catchAsync(async (req: Request, res: Response) => {
-  const { slug } = req.params;
-  const department = await departmentService.getDepartmentBySlug(slug);
+const getFacultiesByDepartmentSlug = catchAsync(
+  async (req: Request, res: Response) => {
+    const { slug } = req.params;
+    const department = await departmentService.getDepartmentBySlug(slug);
 
-  if (!department) {
+    if (!department) {
+      sendResponse(res, {
+        statusCode: httpStatus.NOT_FOUND,
+        success: false,
+        message: 'Department not found',
+        data: null,
+      });
+      return;
+    }
+
+    const faculties = await departmentService.getFacultiesByDepartmentId(
+      department._id.toString()
+    );
+
     sendResponse(res, {
-      statusCode: httpStatus.NOT_FOUND,
-      success: false,
-      message: 'Department not found',
-      data: null,
+      statusCode: httpStatus.OK,
+      success: true,
+      message: `Faculties for department '${department.name}' retrieved successfully`,
+      data: {
+        _id: department._id,
+        name: department.name,
+        slug: department.slug,
+        faculties,
+      },
     });
-    return;
   }
-
-  const faculties = await departmentService.getFacultiesByDepartmentId(
-    department._id.toString()
-  );
-
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Department retrieved successfully',
-    data: {
-      _id: department._id,
-      name: department.name,
-      slug: department.slug,
-      faculties,
-    },
-  });
-});
+);
 
 export const departmentController = {
   getAllDepartments,
-  getDepartmentBySlug,
+  getFacultiesByDepartmentSlug,
 };
