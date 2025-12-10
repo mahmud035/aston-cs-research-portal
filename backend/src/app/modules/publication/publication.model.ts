@@ -17,7 +17,7 @@ const publicationSchema = new Schema<PublicationDocument>(
     venue: { type: String },
     doi: { type: String },
     url: { type: String },
-    keywords: { type: [String], default: [] }, // 👈 new field
+    keywords: { type: [String], default: [] },
     source: {
       sheetRowIndex: { type: Number },
       excelColumn: { type: String, enum: ['Article', 'Conference Paper'] },

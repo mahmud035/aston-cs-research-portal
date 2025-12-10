@@ -1,14 +1,16 @@
 import { Router } from 'express';
+import validateRequest from '../../../app/middlewares/validateRequest';
+import { publicationController } from './publication.controller';
+import { publicationValidation } from './publication.validation';
 
 const router = Router();
 
-// Temporary stub endpoint
-router.get('/', (_req, res) => {
-  res.json({
-    success: true,
-    message: 'Publication route is working',
-    data: [],
-  });
-});
+router.get('/', publicationController.getAllPublications);
+
+router.get(
+  '/:id',
+  validateRequest(publicationValidation.validateGetPublicationParamsSchema),
+  publicationController.getPublicationById
+);
 
 export const publicationRoutes = router;
