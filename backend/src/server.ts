@@ -15,7 +15,11 @@ const dbConnect = async () => {
     }
 
     await mongoose.connect(config.mongoUri);
-    logger.info('✅ Database Connected');
+    logger.info(
+      `✅ Database Connected: ${
+        mongoose.connection.db?.databaseName || 'Unknown'
+      }`
+    );
 
     server = app.listen(config.port, () => {
       logger.info(`🚀 Server Up and Running on port ${config.port}`);
