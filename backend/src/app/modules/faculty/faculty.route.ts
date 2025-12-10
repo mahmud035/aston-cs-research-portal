@@ -1,14 +1,14 @@
 import { Router } from 'express';
+import validateRequest from '../../../app/middlewares/validateRequest';
+import { facultyController } from './faculty.controller';
+import { facultyValidation } from './faculty.validation';
 
 const router = Router();
 
-// Temporary stub endpoint
-router.get('/', (_req, res) => {
-  res.json({
-    success: true,
-    message: 'Faculties route is working',
-    data: [],
-  });
-});
+router.get(
+  '/:id',
+  validateRequest(facultyValidation.validateGetFacultyParamsSchema),
+  facultyController.getFacultyById
+);
 
 export const facultyRoutes = router;

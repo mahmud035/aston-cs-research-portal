@@ -4,7 +4,7 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { facultyService } from './faculty.service';
 
-const getFaculty = catchAsync(async (req: Request, res: Response) => {
+const getFacultyById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const faculty = await facultyService.getFacultyById(id);
 
@@ -50,5 +50,5 @@ const getFaculty = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const facultyController = {
-  getFaculty,
+  getFacultyById,
 };

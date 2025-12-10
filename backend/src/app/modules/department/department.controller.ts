@@ -10,6 +10,7 @@ const getAllDepartments = catchAsync(async (_req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
+    message: 'Departments retrieved successfully',
     data: departments,
   });
 });
@@ -35,6 +36,7 @@ const getDepartmentBySlug = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
+    message: 'Department retrieved successfully',
     data: {
       _id: department._id,
       name: department.name,
