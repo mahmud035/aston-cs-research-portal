@@ -1,14 +1,16 @@
 import { Router } from 'express';
+import validateRequest from '../../../app/middlewares/validateRequest';
+import { departmentController } from './department.controller';
+import { departmentValidation } from './department.validation';
 
 const router = Router();
 
-// Temporary stub endpoint
-router.get('/', (_req, res) => {
-  res.json({
-    success: true,
-    message: 'Departments route is working',
-    data: [],
-  });
-});
+router.get('/', departmentController.getAllDepartments);
+
+router.get(
+  '/:slug',
+  validateRequest(departmentValidation.validateParamsSchema),
+  departmentController.getDepartmentBySlug
+);
 
 export const departmentRoutes = router;
