@@ -11,6 +11,9 @@ const getAllDepartments = catchAsync(async (_req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Departments retrieved successfully',
+    meta: {
+      total: departments.length,
+    },
     data: departments,
   });
 });
@@ -38,6 +41,9 @@ const getFacultiesByDepartmentSlug = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: `Faculties for department '${department.name}' retrieved successfully`,
+      meta: {
+        total: faculties.length,
+      },
       data: {
         _id: department._id,
         name: department.name,

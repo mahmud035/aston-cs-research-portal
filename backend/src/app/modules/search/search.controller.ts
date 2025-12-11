@@ -19,6 +19,9 @@ const search = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Search results retrieved successfully',
+    meta: {
+      total: publications.length + faculties.length,
+    },
     data: {
       publications,
       faculties,

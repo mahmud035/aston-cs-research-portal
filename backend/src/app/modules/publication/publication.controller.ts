@@ -11,6 +11,9 @@ const getAllPublications = catchAsync(async (_req: Request, res: Response) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Publications retrieved successfully',
+    meta: {
+      total: pubs.length,
+    },
     data: pubs,
   });
 });

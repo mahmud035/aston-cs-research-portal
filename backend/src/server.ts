@@ -1,4 +1,3 @@
-// src/server.ts
 import { Server } from 'http';
 import mongoose from 'mongoose';
 import app from './app';
