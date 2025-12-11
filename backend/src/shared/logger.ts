@@ -1,11 +1,18 @@
+// src/shared/logger.ts
 import path from 'path';
 import { createLogger, format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
+
 const { combine, timestamp, label, printf, colorize } = format;
 
-// Custom log format
+// Detect if running on Vercel serverless
+const isServerless = process.env.VERCEL === '1';
+
+// ----------------------
+// Custom Log Format
+// ----------------------
 const logFormat = printf(({ level, message, label, timestamp }) => {
-  const date = new Date(timestamp as string | number);
+  const date = new Date(timestamp as string);
   const hour = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
   const seconds = String(date.getSeconds()).padStart(2, '0');
@@ -15,64 +22,66 @@ const logFormat = printf(({ level, message, label, timestamp }) => {
   } ${hour}:${minutes}:${seconds} [${label}] ${level}: ${message}`;
 });
 
-// Success logger
+// ----------------------
+// Base Console Transport
+// ----------------------
+const consoleTransport = new transports.Console({
+  format: combine(colorize({ all: true }), timestamp(), logFormat),
+});
+
+// ----------------------
+// Local File Transports (Non-serverless)
+// ----------------------
+const fileTransports = !isServerless
+  ? [
+      new DailyRotateFile({
+        filename: path.join(
+          process.cwd(),
+          'logs',
+          'winston',
+          'successes',
+          'app-%DATE%-success.log'
+        ),
+        datePattern: 'YYYY-MM-DD-HH',
+        maxFiles: '14d',
+        maxSize: '20m',
+      }),
+    ]
+  : [];
+
+// ----------------------
+// Error File Transport (Non-serverless)
+// ----------------------
+const errorFileTransports = !isServerless
+  ? [
+      new DailyRotateFile({
+        filename: path.join(
+          process.cwd(),
+          'logs',
+          'winston',
+          'errors',
+          'app-%DATE%-error.log'
+        ),
+        datePattern: 'YYYY-MM-DD-HH',
+        maxFiles: '14d',
+        maxSize: '20m',
+      }),
+    ]
+  : [];
+
+// ----------------------
+// Loggers
+// ----------------------
 const logger = createLogger({
   level: 'info',
   format: combine(label({ label: 'APP' }), timestamp(), logFormat),
-  transports: [
-    // Colorized logs for terminal console
-    new transports.Console({
-      format: combine(
-        colorize({ all: true }),
-        label({ label: 'APP' }),
-        timestamp(),
-        logFormat
-      ),
-    }),
-    // Daily rotate file for success logs
-    new DailyRotateFile({
-      filename: path.join(
-        process.cwd(),
-        'logs',
-        'winston',
-        'successes',
-        'app-%DATE%-success.log'
-      ),
-      datePattern: 'YYYY-MM-DD-HH-mm-ss',
-      zippedArchive: false,
-      maxSize: '20m', // 20 MB
-      maxFiles: '14d', // 14 days
-    }),
-  ],
+  transports: [consoleTransport, ...fileTransports],
 });
 
-// Error logger
 const errorLogger = createLogger({
   level: 'error',
   format: combine(label({ label: 'ERROR' }), timestamp(), logFormat),
-  transports: [
-    new transports.Console({
-      format: combine(
-        colorize({ all: true }),
-        label({ label: 'ERROR' }),
-        timestamp(),
-        logFormat
-      ),
-    }),
-    new DailyRotateFile({
-      filename: path.join(
-        process.cwd(),
-        'logs',
-        'winston',
-        'errors',
-        'app-%DATE%-error.log'
-      ),
-      datePattern: 'YYYY-MM-DD-HH',
-      zippedArchive: false,
-      maxSize: '20m',
-      maxFiles: '14d',
-    }),
-  ],
+  transports: [consoleTransport, ...errorFileTransports],
 });
 
 export { errorLogger, logger };

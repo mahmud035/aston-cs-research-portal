@@ -7,7 +7,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
-    "import:excel": "tsx src/scripts/importFromExcel.ts"
+    "import:excel": "tsx src/scripts/importFromExcel.ts",
+    "vercel:build": "echo 'Building for Vercel...' && tsc"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +34,7 @@
     "@types/express": "^5.0.6",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.10.2",
+    "@vercel/node": "^2.3.0",
     "nodemon": "^3.1.11",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
