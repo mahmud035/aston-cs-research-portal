@@ -1,4 +1,5 @@
 import DepartmentGrid from '../features/departments/DepartmentGrid';
+import SearchSection from '../features/search/SearchSection';
 
 export default function Home() {
   return (
@@ -8,8 +9,7 @@ export default function Home() {
       </h1>
 
       <DepartmentGrid />
-
-      {/* Search section will go here later */}
+      <SearchSection />
     </main>
   );
 }

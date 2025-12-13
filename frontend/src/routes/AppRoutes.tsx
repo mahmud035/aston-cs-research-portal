@@ -4,6 +4,7 @@ import DepartmentPage from '../pages/DepartmentPage';
 import ErrorPage from '../pages/ErrorPage';
 import FacultyPage from '../pages/FacultyPage';
 import Home from '../pages/Home';
+import SearchPage from '../pages/SearchPage';
 
 const appRoutes = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const appRoutes = createBrowserRouter([
       {
         path: '/faculties/:id',
         element: <FacultyPage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
       },
     ],
   },
