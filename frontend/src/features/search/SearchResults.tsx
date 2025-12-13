@@ -13,7 +13,8 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
   if (faculties.length === 0 && publications.length === 0) {
     return (
       <p className="mt-6 text-slate-600 text-center">
-        No results found for <span className="text-red-400">"{query}"</span>
+        No matching results found. Try adjusting your search terms or using
+        broader keywords.
       </p>
     );
   }
@@ -21,10 +22,11 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
   return (
     <div className="mt-8 space-y-12">
       <p className="mb-5 text-sm text-slate-600">
+        Showing{' '}
         <span className="font-medium text-slate-800">
           {publications.length}
         </span>{' '}
-        results found
+        matching results
       </p>
 
       {/* Publications */}

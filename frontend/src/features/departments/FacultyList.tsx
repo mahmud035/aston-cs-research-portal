@@ -9,7 +9,7 @@ export default function FacultyList({ faculties }: FacultyListProps) {
   if (faculties.length === 0) {
     return (
       <p className="text-gray-600">
-        No faculty members found for this department.
+        No faculty members are currently listed for this department.
       </p>
     );
   }

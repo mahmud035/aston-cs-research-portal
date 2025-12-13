@@ -21,6 +21,14 @@ export default function DepartmentGrid() {
     );
   }
 
+  if (departments?.length === 0) {
+    return (
+      <p className="text-slate-600 text-center">
+        No departments are currently available.
+      </p>
+    );
+  }
+
   return (
     <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {departments?.map((department) => (

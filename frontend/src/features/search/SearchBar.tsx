@@ -13,7 +13,8 @@ export default function SearchBar({
     <div className="flex gap-2">
       <input
         type="text"
-        placeholder="Search publications or faculty..."
+        placeholder="Search publications or academic staff…
+..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="flex-1 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -27,7 +28,7 @@ export default function SearchBar({
       transition hover:border-primary hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary-light
     "
         >
-          Clear
+          Clear Search
         </button>
       )}
     </div>
