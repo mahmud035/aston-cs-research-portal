@@ -4,6 +4,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   // Add your production frontend URL from config
+  'https://aston-cs-research-portal.vercel.app/',
   // Add more origins as needed
 ].filter(Boolean); // Remove undefined values
 
