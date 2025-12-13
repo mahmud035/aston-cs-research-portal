@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { data, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import FacultyList from '../features/departments/FacultyList';
 import { getDepartmentBySlug } from '../features/departments/department.api';
 
@@ -35,8 +35,6 @@ export default function DepartmentPage() {
           Faculty members associated with this department
         </p>
       </header>
-
-      <h1>{data.name}</h1>
 
       <FacultyList faculties={department.faculties} />
     </main>
