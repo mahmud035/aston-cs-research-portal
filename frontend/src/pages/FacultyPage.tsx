@@ -27,13 +27,15 @@ export default function FacultyPage() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-10">
+    <main className="container mx-auto max-w-6xl px-4 py-10">
       {/* Header */}
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">{faculty.name}</h1>
+      <header className="mb-8 border-b border-slate-200 pb-4">
+        <h1 className="text-3xl font-bold text-slate-900">{faculty.name}</h1>
 
         {faculty.position && (
-          <p className="mt-1 text-gray-600">{faculty.position}</p>
+          <p className="mt-1 inline-block text-sm font-medium text-primary-light transition hover:text-primary">
+            {faculty.position}
+          </p>
         )}
       </header>
 
@@ -48,7 +50,7 @@ export default function FacultyPage() {
             <li key={dept._id}>
               <Link
                 to={`/departments/${dept.slug}`}
-                className="rounded-md bg-gray-100 px-3 py-1 text-sm hover:bg-gray-200"
+                className="  rounded-full border border-slate-300 bg-white px-3 py-1 text-sm text-slate-700 transition hover:border-primary hover:text-primary"
               >
                 {dept.name}
               </Link>
@@ -63,7 +65,7 @@ export default function FacultyPage() {
           <h2 className="mb-2 font-semibold text-gray-900">
             Research Interests
           </h2>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="max-w-4xl leading-relaxed text-slate-700">
             {faculty.researchInterest}
           </p>
         </section>

@@ -22,7 +22,10 @@ export default function SearchBar({
       {value && (
         <button
           onClick={onClear}
-          className="rounded-md border px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+          className="rounded-md border border-slate-300
+      px-4 py-2 text-sm text-slate-600 cursor-pointer
+      transition hover:border-primary hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary-light
+    "
         >
           Clear
         </button>

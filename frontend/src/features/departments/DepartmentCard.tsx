@@ -9,9 +9,16 @@ export default function DepartmentCard({ department }: DepartmentCardProps) {
   return (
     <Link
       to={`/departments/${department.slug}`}
-      className="block rounded-lg border border-gray-200 p-5 hover:border-gray-400 hover:shadow-sm transition"
+      className="
+   group rounded-xl border border-slate-200
+    bg-white p-6 transition-all duration-200 hover:border-primary-light hover:shadow-md
+  "
     >
-      <h3 className="text-lg font-semibold text-gray-900">{department.name}</h3>
+      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary">
+        {department.name}
+      </h3>
+
+      <p className="mt-2 text-sm text-gray-500">View faculty & research</p>
     </Link>
   );
 }

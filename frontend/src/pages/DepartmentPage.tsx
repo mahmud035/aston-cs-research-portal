@@ -26,7 +26,7 @@ export default function DepartmentPage() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-10">
+    <main className="container mx-auto max-w-6xl px-4 py-10">
       <header>
         <h1 className="text-3xl font-bold text-gray-900">{department.name}</h1>
 

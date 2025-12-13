@@ -19,7 +19,7 @@ export default function SearchSection() {
   });
 
   return (
-    <section className="mt-16">
+    <section className="mt-20 rounded-2xl bg-white p-8 shadow-sm">
       <h2 className="mb-4 text-2xl font-semibold text-gray-900">
         Search Research & Faculty
       </h2>

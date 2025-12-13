@@ -19,7 +19,8 @@ export default function FacultyList({ faculties }: FacultyListProps) {
       {faculties.map((faculty) => (
         <li
           key={faculty._id}
-          className="rounded-md border border-gray-200 p-4 hover:border-gray-400 transition"
+          className="rounded-xl border border-slate-200 bg-white p-5
+    transition hover:shadow-sm"
         >
           <Link to={`/faculties/${faculty._id}`}>
             <h3 className="font-semibold text-gray-900">{faculty.name}</h3>

@@ -16,8 +16,11 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
 
   return (
     <div className="mt-8 space-y-12">
-      <p className="mb-4 text-sm text-gray-600">
-        {publications.length} publications found.
+      <p className="mb-5 text-sm text-slate-600">
+        <span className="font-medium text-slate-800">
+          {publications.length}
+        </span>{' '}
+        results found
       </p>
 
       {/* Publications */}

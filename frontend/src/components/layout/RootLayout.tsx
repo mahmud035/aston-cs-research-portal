@@ -3,14 +3,9 @@ import Navbar from './Navbar';
 
 export default function RootLayout() {
   return (
-    <div>
+    <div className="min-h-screen bg-bg">
       <Navbar />
-
-      {/* Outlet */}
-      <div className="min-h-[calc(100vh-300px)]">
-        <Outlet />
-      </div>
-
+      <Outlet />
       <ScrollRestoration />
     </div>
   );

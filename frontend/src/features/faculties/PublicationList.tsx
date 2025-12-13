@@ -17,7 +17,10 @@ export default function PublicationList({
 
       <ul className="space-y-3">
         {publications.map((pub) => (
-          <li key={pub._id} className="rounded-md border border-gray-200 p-4">
+          <li
+            key={pub._id}
+            className="rounded-lg border border-slate-200 bg-white p-4"
+          >
             <a
               href={`https://scholar.google.com/scholar?q=${encodeURIComponent(
                 pub.title

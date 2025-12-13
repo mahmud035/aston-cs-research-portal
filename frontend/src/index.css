@@ -1,1 +1,12 @@
 @import 'tailwindcss';
+
+body {
+  @apply bg-slate-50 text-slate-800 antialiased;
+}
+
+@theme {
+  --color-primary: #4b1d66; /* Aston-like purple */
+  --color-primary-light: #6d3a8c;
+  --color-accent: #2563eb; /* blue */
+  --color-bg: #f8fafc; /* slate-50 */
+}
