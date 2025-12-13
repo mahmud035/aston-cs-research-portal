@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { searchAll } from '../features/search/search.api';
 import SearchBar from '../features/search/SearchBar';
 import SearchResults from '../features/search/SearchResults';
+import SearchSkeleton from '../features/search/SearchSkeleton';
 import { useDebounce } from '../hooks/useDebounce';
 
 export default function SearchPage() {
@@ -21,11 +22,15 @@ export default function SearchPage() {
     <main className="container mx-auto px-4 py-10">
       <h1 className="mb-6 text-3xl font-bold">Search</h1>
 
-      <SearchBar value={query} onChange={(value) => setParams({ q: value })} />
+      <SearchBar
+        value={query}
+        onChange={(value) => setParams({ q: value })}
+        onClear={() => setParams({})}
+      />
 
-      {isLoading && <p className="mt-6">Searching...</p>}
+      {isLoading && <SearchSkeleton />}
 
-      {data && <SearchResults results={data} />}
+      {data && <SearchResults results={data} query={query} />}
     </main>
   );
 }

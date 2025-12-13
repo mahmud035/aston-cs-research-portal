@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDepartments } from './department.api';
 import DepartmentCard from './DepartmentCard';
+import DepartmentGridSkeleton from './DepartmentGridSkeleton';
 
 export default function DepartmentGrid() {
   const {
@@ -12,9 +13,7 @@ export default function DepartmentGrid() {
     queryFn: () => getDepartments(),
   });
 
-  if (isLoading) {
-    return <p className="text-center">Loading departments...</p>;
-  }
+  if (isLoading) return <DepartmentGridSkeleton />;
 
   if (isError) {
     return (

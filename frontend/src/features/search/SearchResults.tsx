@@ -17,7 +17,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
   return (
     <div className="mt-8 space-y-12">
       <p className="mb-4 text-sm text-gray-600">
-        {publications.length} publications • {faculties.length} faculty
+        {publications.length} publications found.
       </p>
 
       {/* Publications */}
@@ -66,7 +66,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
       )}
 
       {/* Faculties */}
-      {faculties.length > 0 && (
+      {/* {faculties.length > 0 && (
         <section>
           <h2 className="mb-4 text-xl font-semibold">Faculty</h2>
 
@@ -77,8 +77,6 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
                   to={`/faculties/${faculty._id}`}
                   className="font-medium hover:underline"
                 >
-                  {/* FIXME: */}
-                  {/* {faculty.name} */}
                   {highlightText(faculty.name, query)}
                 </Link>
 
@@ -89,7 +87,7 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
             ))}
           </ul>
         </section>
-      )}
+      )} */}
     </div>
   );
 }

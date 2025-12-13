@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router-dom';
 import { getFacultyById } from '../features/faculties/faculty.api';
 import PublicationList from '../features/faculties/PublicationList';
+import FacultyPageSkeleton from './FacultyPageSkeleton';
 
 export default function FacultyPage() {
   const { id } = useParams<{ id: string }>();
@@ -15,9 +16,7 @@ export default function FacultyPage() {
     queryFn: () => getFacultyById(id!),
   });
 
-  if (isLoading) {
-    return <p className="text-center py-10">Loading faculty profile...</p>;
-  }
+  if (isLoading) return <FacultyPageSkeleton />;
 
   if (isError || !faculty) {
     return (

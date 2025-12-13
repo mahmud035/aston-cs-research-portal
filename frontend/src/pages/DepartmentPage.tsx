@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import FacultyList from '../features/departments/FacultyList';
 import { getDepartmentBySlug } from '../features/departments/department.api';
+import DepartmentPageSkeleton from './DepartmentPageSkeleton';
 
 export default function DepartmentPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,9 +17,7 @@ export default function DepartmentPage() {
     enabled: !!slug,
   });
 
-  if (isLoading) {
-    return <p className="text-center py-10">Loading department...</p>;
-  }
+  if (isLoading) return <DepartmentPageSkeleton />;
 
   if (isError || !department) {
     return (
@@ -31,7 +30,7 @@ export default function DepartmentPage() {
       <header>
         <h1 className="text-3xl font-bold text-gray-900">{department.name}</h1>
 
-        <p className="mt-2 text-gray-600">
+        <p className="my-2 text-gray-600">
           Faculty members associated with this department
         </p>
       </header>
