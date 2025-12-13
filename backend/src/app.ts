@@ -6,7 +6,6 @@ import morgan from 'morgan';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import ApplicationRoutes from './app/routes';
 import corsOption from './helpers/corsOption';
-import { connectDB } from './shared/db'; // NEW
 
 const app: Application = express();
 
@@ -16,12 +15,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-//* Database Connection (for serverless)
-// This runs on every cold start, but reuses connection when warm
-connectDB().catch((error) => {
-  console.error('❌ Database connection failed:', error);
-});
 
 //* Application Routes
 app.use('/api/v1', ApplicationRoutes);

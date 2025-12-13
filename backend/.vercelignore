@@ -1,0 +1,24 @@
+# Core ignores
+
+node_modules/
+src/server.ts
+.env
+.env.local
+
+# Testing
+
+_.test.ts
+_.spec.ts
+
+# IDE
+
+.vscode/
+.DS_Store
+
+# Logs
+
+\*.log
+
+# Git
+
+.git/

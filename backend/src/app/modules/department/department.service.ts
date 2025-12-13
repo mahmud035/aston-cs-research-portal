@@ -1,7 +1,14 @@
+import mongoose from 'mongoose';
 import { Faculty } from '../faculty/faculty.model';
 import { Department } from './department.model';
 
 const getAllDepartments = async () => {
+  console.log('🔍 Connection state:', {
+    readyState: mongoose.connection.readyState,
+    name: mongoose.connection.name,
+    host: mongoose.connection.host,
+  });
+
   return Department.find({ isComputerScienceRelated: true })
     .select('_id name slug')
     .lean();

@@ -1,9 +1,27 @@
-node_modules
-dist
+# Dependencies
+node_modules/
+
+# Environment
 .env
 .env.local
-.husky
-.vercel
-.vscode
-logs
-data
+.env.*.local
+!.env.sample
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Vercel (only the local .vercel folder)
+.vercel/
