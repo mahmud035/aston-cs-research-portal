@@ -1,0 +1,27 @@
+# Backend (never needed by frontend deploy)
+backend/
+
+# Node artifacts
+**/node_modules/
+**/.npm/
+**/npm-debug.log*
+
+# Env files (never ship secrets)
+**/.env
+**/.env.*
+!frontend/.env.sample
+
+# Build artifacts (Vercel builds itself)
+**/dist/
+**/build/
+
+# Tooling & OS noise
+**/.DS_Store
+**/.idea/
+**/.vscode/
+
+# Tests & docs
+**/__tests__/
+**/*.spec.*
+**/*.test.*
+**/docs/
