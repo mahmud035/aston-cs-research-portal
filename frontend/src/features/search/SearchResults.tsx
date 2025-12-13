@@ -11,7 +11,11 @@ export default function SearchResults({ results, query }: SearchResultsProps) {
   const { faculties, publications } = results;
 
   if (faculties.length === 0 && publications.length === 0) {
-    return <p className="mt-6 text-gray-600">No results found.</p>;
+    return (
+      <p className="mt-6 text-slate-600 text-center">
+        No results found for <span className="text-red-400">"{query}"</span>
+      </p>
+    );
   }
 
   return (
