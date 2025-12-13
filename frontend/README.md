@@ -1,4 +1,4 @@
-# Aston CS Research Portal
+# Aston CS Research Portal — Frontend
 
 A focused, department-specific research discovery platform for the **Aston University Computer Science Department**.
 This application enables users to explore research groups, academic staff, and scholarly publications through a clean, intuitive, and academically styled interface.
