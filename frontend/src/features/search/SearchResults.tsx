@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
+import { highlightText } from '../../utils/highlightText';
 import type { SearchResponse } from './search.types';
 
 interface SearchResultsProps {
   results: SearchResponse;
+  query: string;
 }
 
-export default function SearchResults({ results }: SearchResultsProps) {
+export default function SearchResults({ results, query }: SearchResultsProps) {
   const { faculties, publications } = results;
 
   if (faculties.length === 0 && publications.length === 0) {
@@ -14,6 +16,10 @@ export default function SearchResults({ results }: SearchResultsProps) {
 
   return (
     <div className="mt-8 space-y-12">
+      <p className="mb-4 text-sm text-gray-600">
+        {publications.length} publications • {faculties.length} faculty
+      </p>
+
       {/* Publications */}
       {publications.length > 0 && (
         <section>
@@ -34,7 +40,7 @@ export default function SearchResults({ results }: SearchResultsProps) {
                   rel="noopener noreferrer"
                   className="block font-medium hover:underline"
                 >
-                  {pub.title}
+                  {highlightText(pub.title, query)}
                 </a>
 
                 {/* Authors */}
@@ -71,7 +77,9 @@ export default function SearchResults({ results }: SearchResultsProps) {
                   to={`/faculties/${faculty._id}`}
                   className="font-medium hover:underline"
                 >
-                  {faculty.name}
+                  {/* FIXME: */}
+                  {/* {faculty.name} */}
+                  {highlightText(faculty.name, query)}
                 </Link>
 
                 {faculty.position && (

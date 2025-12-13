@@ -4,6 +4,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { searchAll } from './search.api';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import SearchSkeleton from './SearchSkeleton';
 
 export default function SearchSection() {
   const [params, setParams] = useSearchParams();
@@ -23,11 +24,15 @@ export default function SearchSection() {
         Search Research & Faculty
       </h2>
 
-      <SearchBar value={query} onChange={(value) => setParams({ q: value })} />
+      <SearchBar
+        value={query}
+        onChange={(value) => setParams({ q: value })}
+        onClear={() => setParams({})}
+      />
 
-      {isLoading && <p className="mt-6 text-gray-600">Searching…</p>}
+      {isLoading && <SearchSkeleton />}
 
-      {data && <SearchResults results={data} />}
+      {data && <SearchResults results={data} query={query} />}
     </section>
   );
 }
